@@ -3,7 +3,6 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
-
 export default function Login() {
   const { login, signInWithGoogle } = useAuth();
   const [email, setEmail] = useState("");
@@ -11,14 +10,16 @@ export default function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // ___________________________ EMAIL LOGIN HANDLER ___________________________________________
+
   async function handleEmailLogin(evt) {
     evt.preventDefault();
     setError("");
     try {
       await login(email, password);
-
       navigate("/dashboard");
     } catch (error) {
+      // Error handling for login
       if (!email || !password) {
         setError("Email OR Password cannot be empty!");
       } else if (email.type !== email) {
@@ -28,6 +29,8 @@ export default function Login() {
       }
     }
   }
+
+  // ____________________________GOOGLE LOGIN HANDLER ______________________________________________
 
   async function handleGoogleLogin() {
     setError("");
@@ -39,9 +42,12 @@ export default function Login() {
     }
   }
 
+  // ___________________________ PAGE KA LAYOUT AND DESIGN ____________________________________
+
   return (
     <div className="flex justify-center items-center h-screen bg-[#FAF3E0] font-[Poppins]">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm border border-[#A3B18A]">
+        {/* Logo */}
         <div className="flex justify-center mb-5">
           <img
             src={logo}
@@ -57,6 +63,8 @@ export default function Login() {
         {error && (
           <p className="text-[#BC4749] text-sm text-center mb-3">{error}</p>
         )}
+
+        {/*_______________________________LOGIN FORM_________________________________________________________________________________________________________________ */}
 
         <form onSubmit={handleEmailLogin} className="space-y-4">
           <input
@@ -89,6 +97,8 @@ export default function Login() {
             New user? <i>Direct niche click karo!</i>
           </p>
         </form>
+
+        {/* ________________________________________________SignUp with GOOGLE feature _______________________________________________________________________________________________ */}
 
         <div className="mt-5 text-center">
           <button

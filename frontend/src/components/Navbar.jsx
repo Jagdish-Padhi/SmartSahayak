@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Menu, X } from "lucide-react"; // professional icons
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const { currentUser, logout } = useAuth();
@@ -9,7 +9,8 @@ export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  //to close dropdwon of logout when clicking outside
+  //_________________to close dropdwon of logout when clicking outside__________________
+
   useEffect(() => {
     function handleOutsideClicks(e) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -34,22 +35,23 @@ export default function Navbar() {
             SmartSahayak
           </Link>
 
-          {/* Desktop Menu */}
+          {/*_____________________For Desktop________________________________________________ */}
+
           <div className="hidden md:flex space-x-6 items-center">
-            <Link to="/home" className="hover:text-yellow-200">
+            <Link to="/home" className="hover:text-yellow-300">
               Home
             </Link>
-            <Link to="/dashboard" className="hover:text-yellow-200">
-              Dashboard
+            <Link to="/schedules" className="hover:text-yellow-300">
+              Timetable
             </Link>
             <Link to="/hw" className="block hover:text-yellow-300">
               Homework
             </Link>
-            <Link to="/schedules" className="hover:text-yellow-200">
-              Schedule
-            </Link>
-            <Link to="/doubt" className="hover:text-yellow-200">
+            <Link to="/doubt" className="hover:text-yellow-300">
               Doubt Solver
+            </Link>
+            <Link to="/trainer" className="hover:text-yellow-300">
+              Language Trainer
             </Link>
 
             {currentUser ?
@@ -83,7 +85,8 @@ export default function Navbar() {
             }
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* ______________Mobile Menu Toggle button ____________________*/}
+
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -97,20 +100,20 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/*______________________ For Mobiles__________________________________________ */}
+
       {menuOpen && (
         <div className="md:hidden px-4 pb-4 space-y-2 shadow">
           <Link to="/home" className="block hover:text-yellow-300">
             Home
           </Link>
-          <Link to="/dashborad" className="block hover:text-yellow-300">
-            dashboard
-          </Link>
-          <Link to="/hw" className="block hover:text-yellow-300">
-            Homework
-          </Link>
+   
           <Link to="/schedules" className="block hover:text-yellow-300">
             Schedule
+          </Link>
+
+          <Link to="/hw" className="block hover:text-yellow-300">
+            Homework
           </Link>
 
           <Link to="/doubt" className="block hover:text-yellow-300">
@@ -120,7 +123,7 @@ export default function Navbar() {
           {currentUser ?
             <button
               onClick={logout}
-              className="block bg-red-600 p-1 rounded hover:scale-105 hover:bg-red-700"
+              className="block bg-red-600 px-3 py-1 rounded hover:scale-105 hover:bg-red-700"
             >
               Logout
             </button>

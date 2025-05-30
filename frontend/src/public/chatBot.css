@@ -1,0 +1,54 @@
+.ai-bubble-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  animation: float 4s ease-in-out infinite;
+}
+
+.ai-bubble {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 25px;
+  background-color: #00878e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(139, 69, 19, 0.4);
+  overflow: hidden;
+  animation: neon-glow 1.5s ease-in-out infinite alternate;
+}
+
+/* GLOWING EFFECT KE LIYE */
+
+@keyframes neon-glow {
+  0% {
+    box-shadow:
+      0 0 5px #00ffcc,
+      0 0 10px #00ffcc,
+      0 0 20px #00ffcc,
+      0 0 40px #00ffcc;
+    border-color: #00ffcc;
+  }
+  100% {
+    box-shadow:
+      0 0 10px #00ffaa,
+      0 0 20px #00ffaa,
+      0 0 30px #00ffaa,
+      0 0 50px #00ffaa;
+    border-color: #00ffaa;
+  }
+}
+
+/* THODA SHAKE KARANE  KE LIYE */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}

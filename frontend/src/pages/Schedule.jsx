@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import Chat from "../components/Chat";
+import logo from "../assets/logo.png";
 import { useAuth } from "../context/AuthContext";
 import Msg from "../components/Msg";
 
@@ -14,11 +17,13 @@ const daysOfWeek = [
 ];
 
 export default function SchedulePage() {
-  //to show popup
+  //______________TO SHOW POPUP KISI ACTION KE BAAD_________________________________________
+
   const [msg, setMsg] = useState("");
   const [msgType, setMsgType] = useState("success");
 
-  //to get UID of user
+  //______________TO GET UID OF USER TO MAINTAIN TO UNIQUE DATA FOR EACH USER________________
+
   const { currentUser } = useAuth();
   const uid = currentUser?.uid;
 
@@ -32,7 +37,8 @@ export default function SchedulePage() {
     uid: "",
   });
 
-  // Fetching schedules from backend
+  //____________________________Fetching schedules from backend_________________________________
+
   useEffect(() => {
     if (!uid) return;
 
@@ -60,7 +66,8 @@ export default function SchedulePage() {
     setShowDay((prev) => ({ ...prev, [dayIndex]: !prev[dayIndex] }));
   }
 
-  // To Delete a schedule by ID
+  // _____________________________To Delete a schedule by ID______________________________________
+
   async function handleDelete(day, id) {
     try {
       await fetch(`/api/schedules/${id}`, { method: "DELETE" });
@@ -76,7 +83,8 @@ export default function SchedulePage() {
     }
   }
 
-  // Reset timetable
+  // ______________________________________Reset timetable_________________________________________
+
   async function handleReset() {
     if (window.confirm("Are you sure to delete all schedules?")) {
       await fetch(`/api/schedules?uid=${uid}`, { method: "DELETE" });
@@ -87,7 +95,8 @@ export default function SchedulePage() {
     }
   }
 
-  // Add new schedule
+  // ______________________________________Add new schedule_________________________________________
+
   async function handleAddSchedule(e) {
     try {
       e.preventDefault();
@@ -116,6 +125,8 @@ export default function SchedulePage() {
       setMsgType("error");
     }
   }
+
+  // ________________________________________PAGE DESIGN AND LAYOUT___________________________________________________________________________________
 
   return (
     <>
@@ -261,6 +272,10 @@ export default function SchedulePage() {
           </div>
         </form>
       </div>
+
+      <Chat src={logo} />
+
+      <Footer />
     </>
   );
 }

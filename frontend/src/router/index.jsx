@@ -1,40 +1,50 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "../pages/Login.jsx";
-import Dashboard from "../pages/Dashboard";
-import Home from "../pages/Home";
-import Schedules from "../pages/Schedule.jsx"
+import { Routes, Route } from "react-router-dom";
 import PrivateRoute from "../components/PrivateRoute";
+
+import Login from "../pages/Login";
+import Home from "../pages/Home";
+import Schedules from "../pages/Schedule";
+import Hw from "../pages/Hw.jsx";
+import Doubt from "../pages/Doubt";
+
 
 export default function AppRouter() {
   return (
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/home"
-          element={
-            <PrivateRoute>
-              <Home />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/schedules"
-          element={
-            <PrivateRoute>
-              <Schedules/>
-            </PrivateRoute>
-          }
-        />
-      </Routes>
-   
+    <Routes>
+      <Route path="/" element={<Login />} />
+
+      <Route
+        path="/home"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/schedules"
+        element={
+          <PrivateRoute>
+            <Schedules />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/hw"
+        element={
+          <PrivateRoute>
+            <Hw />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/doubt"
+        element={
+          <PrivateRoute>
+            <Doubt />
+          </PrivateRoute>
+        }
+      />
+    </Routes>
   );
 }

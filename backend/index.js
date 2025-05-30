@@ -1,9 +1,11 @@
-import scheduleRoutes from "./routes/schedRoutes.js";
-import cors from "cors";
 import express from "express";
-import dotenv from "dotenv";
 import mongoose from "mongoose";
-
+import scheduleRoutes from "./routes/schedRoutes.js";
+import hwRoutes from "./routes/hwRoutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
+import cors from "cors";
+import session from "express-session";
+import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
@@ -11,10 +13,25 @@ const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//for chat with AI middleware
+
+app.use(
+  session({
+    secret: "smart_sahayak_secret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
 
 app.use("/api/schedules", scheduleRoutes);
+app.use("/api/hw", hwRoutes);
+app.use("/api/doubts", chatRoutes);
 
-// MongoDB connection'
+// MongoDB connections
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {

@@ -12,12 +12,14 @@ import {
 
 const AuthContext = createContext();
 
-//Provider component
+//Provider component (ye automatically check karta rhega ki jo page pe aaya hai vo logged in hai ya nahi)
+
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // Track auth state change on rendering a component
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -27,16 +29,19 @@ export function AuthProvider({ children }) {
   }, []);
 
   //signUp
+
   function signup(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
 
   //login
+
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
   //Sign in with Google
+
   async function signInWithGoogle() {
     const provider = new GoogleAuthProvider();
 
@@ -49,6 +54,7 @@ export function AuthProvider({ children }) {
   }
 
   //logout
+
   function logout() {
     return signOut(auth);
   }
