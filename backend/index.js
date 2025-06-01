@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import scheduleRoutes from "./routes/schedRoutes.js";
 import hwRoutes from "./routes/hwRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
+import habitRoutes from "./routes/habitRoutes.js";
 import cors from "cors";
 import session from "express-session";
 import dotenv from "dotenv";
@@ -29,6 +30,8 @@ app.use(
 app.use("/api/schedules", scheduleRoutes);
 app.use("/api/hw", hwRoutes);
 app.use("/api/doubts", chatRoutes);
+app.use("/api/habit", habitRoutes);
+
 
 // MongoDB connections
 

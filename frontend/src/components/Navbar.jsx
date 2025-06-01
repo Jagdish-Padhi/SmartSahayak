@@ -50,8 +50,8 @@ export default function Navbar() {
             <Link to="/doubt" className="hover:text-yellow-300">
               Doubt Solver
             </Link>
-            <Link to="/trainer" className="hover:text-yellow-300">
-              Language Trainer
+            <Link to="/habit" className="hover:text-yellow-300">
+              Habit Builder
             </Link>
 
             {currentUser ?
@@ -118,6 +118,9 @@ export default function Navbar() {
 
           <Link to="/doubt" className="block hover:text-yellow-300">
             Doubt Solver
+          </Link>
+          <Link to="/habit" className="block hover:text-yellow-300">
+            Good Habit Builder
           </Link>
 
           {currentUser ?

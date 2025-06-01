@@ -1,10 +1,8 @@
-import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import robo from "../assets/robo.png";
 import logo from "../assets/logo.png";
 import Chat from "../components/Chat";
-
 import { useAuth } from "../context/AuthContext";
 export default function Home() {
   const { currentUser } = useAuth();

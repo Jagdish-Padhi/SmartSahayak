@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
@@ -17,7 +17,7 @@ export default function Login() {
     setError("");
     try {
       await login(email, password);
-      navigate("/dashboard");
+      navigate("/home");
     } catch (error) {
       // Error handling for login
       if (!email || !password) {
@@ -36,7 +36,7 @@ export default function Login() {
     setError("");
     try {
       await signInWithGoogle();
-      navigate("/dashboard");
+      navigate("/home");
     } catch (err) {
       setError("Koi baat nahi... Try again!");
     }

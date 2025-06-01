@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Home from "../pages/Home";
 import Schedules from "../pages/Schedule";
 import Hw from "../pages/Hw.jsx";
+import Habit from "../pages/Habit.jsx";
 import Doubt from "../pages/Doubt";
 
 
@@ -42,6 +43,14 @@ export default function AppRouter() {
         element={
           <PrivateRoute>
             <Doubt />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/habit"
+        element={
+          <PrivateRoute>
+            <Habit />
           </PrivateRoute>
         }
       />
